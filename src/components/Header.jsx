@@ -185,14 +185,15 @@ export default function Header({
           <img 
             src={logoImg} 
             alt="Knowledge Sharing Platform Logo" 
-            style={{ width: '56px', height: '56px', objectFit: 'contain', filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.2))' }} 
+            style={{ width: '56px', height: '56px', objectFit: 'contain', filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.3))' }} 
           />
           <h1 style={{ 
             margin: 0, 
             fontSize: 'clamp(18px, 4vw, 24px)', 
             fontWeight: '700',
             lineHeight: '1.3',
-            textAlign: 'center'
+            textAlign: 'center',
+            color: currentTheme.headerText // Theme မှ Header Text အရောင်ကို တိုက်ရိုက်ယူသုံးမည်
           }}>
             လူငယ်များအတွက် <br />
             Knowledge Sharing Platform
