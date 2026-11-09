@@ -15,7 +15,7 @@ export default function Header({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Close dropdown when clicking anywhere outside of it
+  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (isMenuOpen && !event.target.closest('.menu-container')) {
@@ -91,7 +91,7 @@ export default function Header({
             )}
           </div>
 
-          {/* Right: Menu / Settings Toggle Button */}
+          {/* Right: Menu (Favorites & Dark Mode only) */}
           <div className="menu-container" style={{ position: 'relative', marginLeft: 'auto' }}>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -112,13 +112,13 @@ export default function Header({
               ⚙️ Menu {favoritesCount > 0 && `(❤️ ${favoritesCount})`}
             </button>
 
-            {/* Dropdown Menu Box */}
+            {/* Dropdown Menu Box (Search Bar ကို ဖြုတ်ပြီး Favorites နဲ့ Dark Mode သို့ ပြောင်းထားသည်) */}
             {isMenuOpen && (
               <div style={{
                 position: 'absolute',
                 right: 0,
                 top: '40px',
-                width: '240px',
+                width: '220px',
                 backgroundColor: currentTheme.cardBg,
                 color: currentTheme.textMain,
                 borderRadius: '12px',
@@ -130,31 +130,6 @@ export default function Header({
                 border: `1px solid ${currentTheme.border}`,
                 zIndex: 1100
               }}>
-                {/* Search Bar Inside Dropdown */}
-                <div>
-                  <label style={{ fontSize: '11px', fontWeight: '600', color: currentTheme.textSub, display: 'block', marginBottom: '4px' }}>
-                    ရှာဖွေရန် (Search)
-                  </label>
-                  <input 
-                    type="text"
-                    placeholder="ခေါင်းစဉ်ရှာရန်..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    style={{
-                      width: '100%',
-                      padding: '8px 10px',
-                      borderRadius: '8px',
-                      border: `1px solid ${currentTheme.border}`,
-                      outline: 'none',
-                      fontSize: '13px',
-                      backgroundColor: currentTheme.bg,
-                      color: currentTheme.textMain,
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                </div>
-
-                {/* Saved Favorites Link */}
                 <button
                   onClick={() => {
                     onOpenFavorites();
@@ -181,7 +156,6 @@ export default function Header({
                   </span>
                 </button>
 
-                {/* Dark Mode Toggle */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '6px', borderTop: `1px solid ${currentTheme.border}` }}>
                   <span style={{ fontSize: '13px', fontWeight: '600' }}>Dark Mode</span>
                   <button 
@@ -207,7 +181,7 @@ export default function Header({
         </div>
 
         {/* Title Header Section */}
-        <div style={{ marginTop: '10px', textAlign: 'center', paddingBottom: '6px' }}>
+        <div style={{ marginTop: '10px', textAlign: 'center', paddingBottom: '8px' }}>
           <h1 style={{ 
             margin: 0, 
             fontSize: 'clamp(18px, 4vw, 24px)', 
@@ -217,6 +191,28 @@ export default function Header({
             လူငယ်များအတွက် <br />
             Knowledge Sharing Platform
           </h1>
+        </div>
+
+        {/* 🔍 Global Search Bar Outside (Header အောက်ဘက်တွင် အမြဲပေါ်နေမည်) */}
+        <div style={{ marginTop: '10px' }}>
+          <input 
+            type="text"
+            placeholder="🔍 ခေါင်းစဉ် သို့မဟုတ် ကုဒ်ဖြင့် ရှာဖွေရန်..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '10px 14px',
+              borderRadius: '24px',
+              border: 'none',
+              outline: 'none',
+              fontSize: '14px',
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              color: '#333333',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              boxSizing: 'border-box'
+            }}
+          />
         </div>
 
       </div>
