@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import logoImg from '../assets/Knowledge.png';
 
 export default function Header({ 
   currentTheme, 
@@ -15,7 +16,6 @@ export default function Header({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (isMenuOpen && !event.target.closest('.menu-container')) {
@@ -91,7 +91,7 @@ export default function Header({
             )}
           </div>
 
-          {/* Right: Menu (Favorites & Dark Mode only) */}
+          {/* Right: Menu Toggle Button */}
           <div className="menu-container" style={{ position: 'relative', marginLeft: 'auto' }}>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -112,7 +112,7 @@ export default function Header({
               ⚙️ Menu {favoritesCount > 0 && `(❤️ ${favoritesCount})`}
             </button>
 
-            {/* Dropdown Menu Box (Search Bar ကို ဖြုတ်ပြီး Favorites နဲ့ Dark Mode သို့ ပြောင်းထားသည်) */}
+            {/* Dropdown Menu Box */}
             {isMenuOpen && (
               <div style={{
                 position: 'absolute',
@@ -180,20 +180,26 @@ export default function Header({
 
         </div>
 
-        {/* Title Header Section */}
-        <div style={{ marginTop: '10px', textAlign: 'center', paddingBottom: '8px' }}>
+        {/* Title & Custom Logo Section */}
+        <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', paddingBottom: '6px' }}>
+          <img 
+            src={logoImg} 
+            alt="Knowledge Sharing Platform Logo" 
+            style={{ width: '56px', height: '56px', objectFit: 'contain', filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.2))' }} 
+          />
           <h1 style={{ 
             margin: 0, 
             fontSize: 'clamp(18px, 4vw, 24px)', 
             fontWeight: '700',
-            lineHeight: '1.4'
+            lineHeight: '1.3',
+            textAlign: 'center'
           }}>
             လူငယ်များအတွက် <br />
             Knowledge Sharing Platform
           </h1>
         </div>
 
-        {/* 🔍 Global Search Bar Outside (Header အောက်ဘက်တွင် အမြဲပေါ်နေမည်) */}
+        {/* Search Bar */}
         <div style={{ marginTop: '10px' }}>
           <input 
             type="text"
